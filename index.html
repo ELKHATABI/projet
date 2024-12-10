@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:focus {
+            outline: 3px solid #f00;
+        }
+    </style>
+</head>
+<body onload="addTabFocus()">
+    <h1>Interactive Photo Gallery</h1>
+    <div class="gallery" id="gallery">
+        <img src="image1.jpg" alt="A beautiful mountain landscape" tabindex="0">
+        <img src="image2.jpg" alt="A calm beach during sunset" tabindex="0">
+        <img src="image3.jpg" alt="A bustling city skyline at night" tabindex="0">
+        <img src="image4.jpg" alt="A serene forest path" tabindex="0">
+        <img src="image5.jpg" alt="A colorful hot air balloon in the sky" tabindex="0">
+        <img src="image6.jpg" alt="A close-up of vibrant flowers" tabindex="0">
+    </div>
+    <script>
+        const gallery = document.getElementById('gallery');
+        const images = gallery.getElementsByTagName('img');
+
+        for (let img of images) {
+            img.addEventListener('mouseover', () => {
+                img.style.transform = 'scale(1.1)';
+            });
+            img.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+            });
+            img.addEventListener('focus', () => {
+                img.style.borderColor = 'blue';
+                console.log('Image focused:', img.alt);
+            });
+            img.addEventListener('blur', () => {
+                img.style.borderColor = '#ccc';
+                console.log('Image blurred:', img.alt);
+            });
+        }
+
+        function addTabFocus() {
+            console.log('Page loaded and tab focus attributes added.');
+        }
+    </script>
+</body>
+</html>
